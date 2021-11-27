@@ -1,12 +1,15 @@
 DROP DATABASE section1;
+
 CREATE DATABASE section1;
-USE section1;
+
+# \c section1
 CREATE TABLE cities(
     name VARCHAR(50),
     country VARCHAR(50),
     population INTEGER,
     area INTEGER
 );
+
 INSERT INTO cities (name, country, population, area)
 VALUES('Tokyo', 'Japan', '38505000', 8223);
 INSERT INTO cities(name, country, population, area)
@@ -20,10 +23,13 @@ FROM cities;
 SELECT name,
     population / area AS population_density
 FROM cities;
+
 -- String operator & Function
 SELECT name || ', ' || country AS location
 FROM cities;
-SELECT CONCAT(name, ', ', countrt) AS location
+
+SELECT CONCAT(name, ', ', country) AS location
 FROM cities;
-SELECT CONCAT(UPPER(name), ', ', UPPER(countrt)) AS location
+
+SELECT CONCAT(UPPER(name), ', ', UPPER(country)) AS location
 FROM cities;
