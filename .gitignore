@@ -1,4 +1,4 @@
 .vscode
 sessions/
-# storage/
+storage/root/test/*.tar
 pgadmin4.db
