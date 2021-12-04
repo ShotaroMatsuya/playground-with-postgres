@@ -9,6 +9,7 @@ RUN apt-get update \
 ENV POSTGRES_DB 'postgres'
 ENV POSTGRES_USER 'postgres'
 ENV POSTGRES_PASSWORD 'password'
+ENV TZ "Asia/Tokyo"
 
 # Copy in the load-extensions scripts 
 COPY postgres/load-extensions.sh/ /docker-entrypoint-initdb.d/

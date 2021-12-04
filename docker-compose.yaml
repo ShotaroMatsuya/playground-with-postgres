@@ -8,5 +8,18 @@ services:
       - data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
+  pgadmin:
+    image: dpage/pgadmin4:4.2
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root
+      PGADMIN_DEFAULT_PASSWORD: password
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    
 volumes:
   data:
+  pgadmin:
