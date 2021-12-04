@@ -1,1 +1,4 @@
 .vscode
+sessions/
+# storage/
+pgadmin4.db

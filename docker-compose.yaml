@@ -16,7 +16,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: root
       PGADMIN_DEFAULT_PASSWORD: password
     volumes:
-      - pgadmin:/var/lib/pgadmin
+      - ./pgadmin:/var/lib/pgadmin
     depends_on:
       - postgres
     
