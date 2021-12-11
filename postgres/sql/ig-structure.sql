@@ -82,3 +82,26 @@ CREATE TABLE followers(
     follower_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     UNIQUE(leader_id, follower_id)
 );
+
+-- INDEX
+
+CREATE INDEX users_username_idx ON users(username);
+
+DROP INDEX users_username_idx;
+
+EXPLAIN ANALYZE SELECT * FROM users WHERE username = 'Emil30';
+
+SELECT relname, relkind FROM pg_class WHERE relkind = 'i';
+
+
+CREATE EXTENSION pageinspect;
+
+SELECT * FROM bt_metap('users_username_idx');
+-- idxのpage3(leaf node)の各itemのhexデータを表示
+SELECT * FROM bt_page_items('users_username_idx',3);
+-- HDD内のファイル名(oid)を取得
+SELECT oid, datname FROM pg_database;
+-- HDDのpath取得
+SHOW data_directory;
+-- index情報が格納されているfile名(oid)の取得
+SELECT * FROM pg_class WHERE relkind = 'i'
