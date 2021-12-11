@@ -10,7 +10,7 @@ CREATE TABLE users(
     email VARCHAR(40),
     password VARCHAR(50),
     status VARCHAR(15),
-    CHECK(CALESCE(phone,email) IS NOT NULL) -- return the first argument that it's provided that is not null.
+    CHECK(COALESCE(phone,email) IS NOT NULL) -- return the first argument that it's provided that is not null.
 );
 
 CREATE TABLE posts (
@@ -66,14 +66,13 @@ CREATE TABLE caption_tag(
 CREATE TABLE hashtags(
     id SERIAL PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    title VARCHAR(20) NOT NULL UNIQUE,
-    
+    title VARCHAR(20) NOT NULL UNIQUE
 );
 CREATE TABLE hashtags_posts(
     id SERIAL PRIMARY KEY,
     hashtag_id INTEGER NOT NULL REFERENCES hashtags(id) ON DELETE CASCADE,
     post_id INTEGER NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
-    UNIQUE(hashta_id, post_id)
+    UNIQUE(hashtag_id, post_id)
 );
 
 CREATE TABLE followers(
