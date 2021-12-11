@@ -44,6 +44,12 @@ postgres=# \du
 postgres=# \l
 ```
 
+か
+
+```
+postgres=# SELECT * FROM pg_database;
+```
+
 ### 他のデータベースに接続
 
 ```
@@ -54,6 +60,12 @@ postgres=# \c (dbname)
 
 ```
 postgres=# create database (dbname);
+```
+
+### データベースの削除
+
+```
+postgres=# drop database <データベース名>;
 ```
 
 ### 接続中のデータベースの情報を表示
@@ -78,4 +90,67 @@ postgres=# \d (tablename)
 
 ```
 postgres=# \i filename.sql
+```
+
+# バックアップとリストア
+
+### データベース単位のバックアップ
+
+```
+pg_dump mydb > db.sql
+```
+
+### テーブル単位のバックアップ
+
+```
+pg_dump -t mytab mydb > db.sql
+```
+
+### リストア
+
+newdb というデータベースに db.sql(sql スクリプトファイル)の内容をリストア
+
+```
+psql -d newb -f db.sql
+```
+
+newdb というデータベースに db.dump(アーカイブファイル)の内容をリストア
+
+```
+pg_restore -d newdb db.dump
+```
+
+例
+-a data-only
+-e exit-on-error
+-v verbose 冗長モードを指定
+-d dbname
+
+```
+pg_restore -a -O --disable-triggers -e -v -d instagram ig.sql
+```
+
+# 権限周り
+
+例
+
+```
+CREATE USER youruser WITH ENCRYPTED PASSWORD 'yourpass';
+GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
+```
+
+## root のロールを作成し、必要な権限を与える
+
+### ロール作成
+
+（docker-compose の設定に合わせて password も設定）
+
+```
+postgres=# CREATE ROLE root WITH LOGIN PASSWORD 'password';
+```
+
+### 権限を付与
+
+```
+postgres=# ALTER ROLE root SUPERUSER CREATEDB;
 ```

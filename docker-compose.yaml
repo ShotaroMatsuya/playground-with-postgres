@@ -6,12 +6,13 @@ services:
       dockerfile: postgres/Dockerfile
     volumes:
       - data:/var/lib/postgresql/data
+      - ./postgres/sql:/etc/postgresql/sql
     ports:
       - '5432:5432'
   pgadmin:
     image: dpage/pgadmin4:4.2
     ports:
-      - 8080:80
+      - 8888:80
     environment:
       PGADMIN_DEFAULT_EMAIL: root
       PGADMIN_DEFAULT_PASSWORD: password
