@@ -20,7 +20,30 @@ services:
       - ./pgadmin:/var/lib/pgadmin
     depends_on:
       - postgres
-    
+  node:
+    build: 
+      context: ./ig
+      dockerfile: Dockerfile
+      # 
+    # command: npm run migrate up
+    # command: npm run migrate down
+    command: npm run migrate create rename contents to body
+    ports:
+      - 3000:3000
+    volumes:
+      - ./ig:/app
+      - /app/node_modules
+    environment:
+      DATABASE_URL: postgres://postgres:password@postgres:5432/socialnetwork
+    depends_on:
+      - postgres
+  
+  npm:
+    image: node:14
+    working_dir: /app
+    entrypoint: ['npm']
+    volumes:
+      - ./ig/:/app
 volumes:
   data:
   pgadmin:

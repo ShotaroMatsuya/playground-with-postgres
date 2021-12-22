@@ -154,3 +154,27 @@ postgres=# CREATE ROLE root WITH LOGIN PASSWORD 'password';
 ```
 postgres=# ALTER ROLE root SUPERUSER CREATEDB;
 ```
+
+===
+
+# Migration
+
+## `docker-compose run --rm npm install node-pg-migrate pg`
+
+node-pg-migrate と pg をインストール
+
+## `postgres= create database socialnetwork`
+
+postgres コンテナにログインして db を新たに作成
+
+## `docker-compose run --rm npm run migrate create table comments`
+
+comment table を作成
+すると`migrations/1640106141898_table-comments.js`が生成
+
+row SQL を記述
+
+## `docker run -it 81ea28ab3ac6 npm run migrate up`
+
+Migration の実行  
+ちなみに root の部分は`docker run -it 81ea28ab3ac6 whoami`のようにして現在 terminal にログインしているユーザ − 名を確認してから使った

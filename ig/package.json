@@ -1,0 +1,15 @@
+{
+    "name": "postgres-ig",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts":{
+      "migrate": "node-pg-migrate"
+    },
+    "author": "ShotaroMatsuya",
+    "license": "MIT",
+    "dependencies": {
+        "node-pg-migrate": "^6.2.0",
+        "pg": "^8.7.1"
+    }
+}
