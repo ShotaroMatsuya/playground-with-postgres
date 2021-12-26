@@ -49,6 +49,22 @@ services:
     depends_on:
       - postgres
   
+  social:
+    build:
+      context: ./social-repo
+      dockerfile: Dockerfile
+    command: node index.js
+    ports:
+      - 3000:3000
+    volumes:
+      - ./social-repo:/app
+      - /app/node_modules
+    env_file:
+      - ./social-repo/web-variables.env
+    networks:
+      - postgres
+    depends_on:
+      - postgres
   npm:
     image: node:14
     working_dir: /app
@@ -57,7 +73,7 @@ services:
       DATABASE_URL: postgres://postgres:password@postgres:5432/socialnetwork
 
     volumes:
-      - ./ig/:/app
+      - ./social-repo:/app
     networks:
       - postgres
 volumes:

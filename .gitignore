@@ -4,3 +4,4 @@ pgadmin/storage/root/test/*.tar
 pgadmin4.db
 ig.sql
 ig/node_modules/
+social-repo/node_modules/

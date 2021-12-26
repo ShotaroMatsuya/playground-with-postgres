@@ -9,6 +9,6 @@ RUN npm install
 COPY . .
 ENV DATABASE_URL 'postgres://postgres@postgres:5432/socialnetwork'
 
-EXPOSE 3005
+EXPOSE 3000
 
 CMD ["npm","start"]

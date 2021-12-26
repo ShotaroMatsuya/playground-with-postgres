@@ -185,3 +185,11 @@ Migration の実行
 ## `docker-compose run --rm npm run migrate down`
 
 Migration の rollback(1 回分)
+
+---
+
+# Web サーバー構築
+
+## `docker-compose run --rm npm init -y`
+
+## `docker-compose run --rm npm install dedent express jest node-pg-migrate nodemon pg pg-format supertest`
