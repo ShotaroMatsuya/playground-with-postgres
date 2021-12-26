@@ -3,12 +3,13 @@
     "version": "1.0.0",
     "description": "",
     "main": "server.js",
-    "scripts":{
-      "migrate": "node-pg-migrate"
+    "scripts": {
+        "migrate": "node-pg-migrate"
     },
     "author": "ShotaroMatsuya",
     "license": "MIT",
     "dependencies": {
+        "express": "^4.17.2",
         "node-pg-migrate": "^6.2.0",
         "pg": "^8.7.1"
     }
