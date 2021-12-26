@@ -159,6 +159,10 @@ postgres=# ALTER ROLE root SUPERUSER CREATEDB;
 
 # Migration
 
+## `docker network create postgres`
+
+node アプリケーションと postgres を同じネットワーク内に配置する
+
 ## `docker-compose run --rm npm install node-pg-migrate pg`
 
 node-pg-migrate と pg をインストール
@@ -174,7 +178,10 @@ comment table を作成
 
 row SQL を記述
 
-## `docker run -it 81ea28ab3ac6 npm run migrate up`
+## `docker-compose run --rm npm run migrate up`
 
-Migration の実行  
-ちなみに root の部分は`docker run -it 81ea28ab3ac6 whoami`のようにして現在 terminal にログインしているユーザ − 名を確認してから使った
+Migration の実行
+
+## `docker-compose run --rm npm run migrate down`
+
+Migration の rollback(1 回分)
