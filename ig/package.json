@@ -4,13 +4,15 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "migrate": "node-pg-migrate"
+        "migrate": "node-pg-migrate",
+        "start": "nodemon index.js"
     },
     "author": "ShotaroMatsuya",
     "license": "MIT",
     "dependencies": {
         "express": "^4.17.2",
         "node-pg-migrate": "^6.2.0",
-        "pg": "^8.7.1"
+        "pg": "^8.7.1",
+        "nodemon": "^2.0.15"
     }
 }

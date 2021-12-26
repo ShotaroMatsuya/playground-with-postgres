@@ -36,7 +36,7 @@ services:
     # command: npm run migrate up
     # command: npm run migrate down
     # command: npm run migrate create rename contents to body
-    command: node index.js
+    # command: node index.js
     ports:
       - 3005:3005
     volumes:
