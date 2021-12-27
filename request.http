@@ -1,2 +1,26 @@
-http://localhost:3000/users
+# http://localhost:3000/users/1;DROP TABLE users;
+
+http://localhost:3000/users/1
+
+###
+POST http://localhost:3000/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "cookie123",
+    "bio": "I am a cookie"
+}
+
+###
+PUT http://localhost:3000/users/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "Alyson156",
+    "bio": "I am alysoin"
+}
+###
+DELETE  http://localhost:3000/users/1 HTTP/1.1
+Content-Type: application/json
+
 
