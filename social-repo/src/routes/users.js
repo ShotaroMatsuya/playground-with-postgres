@@ -1,10 +1,27 @@
 const express = require('express');
+const UserRepo = require('../repos/user-repo');
 
 const router = express.Router();
 
-router.get('/users', async (req, res) => {});
+router.get('/users', async (req, res) => {
+  const users = await UserRepo.find();
 
-router.get('/users/:id', async (req, res) => {});
+  users[0].createdAt;
+
+  res.send(users);
+});
+
+router.get('/users/:id', async (req, res) => {
+  const { id } = req.params;
+
+  const user = await UserRepo.findById(id);
+
+  if (user) {
+    res.send(user);
+  } else {
+    res.sendStatus(404);
+  }
+});
 
 router.post('/users', async (req, res) => {});
 

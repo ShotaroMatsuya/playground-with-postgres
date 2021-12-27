@@ -53,7 +53,7 @@ services:
     build:
       context: ./social-repo
       dockerfile: Dockerfile
-    command: node index.js
+    # command: node index.js
     ports:
       - 3000:3000
     volumes:
