@@ -206,7 +206,11 @@ do this to add dependencies.
 
 # テスト用スキーマの作成
 
-## `postgres=# CREATE SCHEMA test;`
+## test スキーマに users テーブルを作成
+
+```
+postgres=# CREATE SCHEMA test;
+```
 
 test スキーマに users テーブルを作成
 
@@ -234,4 +238,26 @@ SHOW search_path;
 
 ```bash
 SET search_path TO test, public;
+```
+
+## 作成済みスキーマの取得
+
+### \dn コマンドから取得
+
+```
+postgres=# \dn
+```
+
+### システムカタログ **pg_namespace** から取得する
+
+pg\_ で始まるスキーマは PostgreSQL のシステムが使用しているものです。また information_schema もシステムが使用するものです)。
+
+```
+select nspname, nspowner, nspacl from pg_namespace;
+```
+
+## スキーマの削除
+
+```bash
+DROP SCHEMA <スキーマ> CASCADE;
 ```

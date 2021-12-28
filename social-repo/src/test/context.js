@@ -3,18 +3,19 @@ const format = require('pg-format');
 const { default: migrate } = require('node-pg-migrate');
 const pool = require('../pool');
 
+const DEFAULT_OPTS = {
+  host: process.env.HOST,
+  port: process.env.PORT,
+  database: process.env.TEST_DB,
+  user: process.env.DBUSER,
+  password: process.env.PASSWORD,
+};
 class Context {
   static async build() {
     // 1. Randomly generating a role name to connect to PG as
     const roleName = 'a' + randomBytes(4).toString('hex');
     // 2. Connect to PG as usual
-    await pool.connect({
-      host: process.env.HOST,
-      port: process.env.PORT,
-      database: process.env.TEST_DB,
-      user: process.env.DBUSER,
-      password: process.env.PASSWORD,
-    });
+    await pool.connect(DEFAULT_OPTS);
     // 3. Create a new role
     //   await pool.query(`
     //     CREATE ROLE ${roleName} WITH LOGIN PASSWORD '${$roleName}';
@@ -59,6 +60,17 @@ class Context {
   }
   constructor(roleName) {
     this.roleName = roleName;
+  }
+  async close() {
+    // 1.Disconnect from PG
+    await pool.close();
+    // 2.Reconnect as our root user
+    await pool.connect(DEFAULT_OPTS);
+    // 3.Delete the role and schema we created
+    await pool.query(format('DROP SCHEMA %I CASCADE;', this.roleName));
+    await pool.query(format('DROP ROLE %I;', this.roleName));
+    // 4.Disconnect
+    await pool.close();
   }
 }
 
