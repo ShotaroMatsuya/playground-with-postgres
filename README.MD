@@ -192,4 +192,46 @@ Migration の rollback(1 回分)
 
 ## `docker-compose run --rm npm init -y`
 
+generate package.json
+
+do this to add dependencies.
+
 ## `docker-compose run --rm npm install dedent express jest node-pg-migrate nodemon pg pg-format supertest`
+
+---
+
+# テスト実行
+
+## `docker-compose run --rm npm run test`
+
+# テスト用スキーマの作成
+
+## `postgres=# CREATE SCHEMA test;`
+
+test スキーマに users テーブルを作成
+
+```bash
+CREATE TABLE test.users(
+    id SERIAL PRIMARY KEY,
+    username VARCHAR
+);
+```
+
+## デフォルトスキーマの確認
+
+```bash
+SHOW search_path;
+```
+
+```bash
+   search_path
+-----------------
+ "$user", public
+(1 row)
+```
+
+## デフォルトスキーマの変更
+
+```bash
+SET search_path TO test, public;
+```

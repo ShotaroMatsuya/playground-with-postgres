@@ -70,8 +70,9 @@ services:
     working_dir: /app
     entrypoint: ['npm']
     environment:
-      DATABASE_URL: postgres://postgres:password@postgres:5432/socialnetwork
-
+      DATABASE_URL: postgres://postgres:password@postgres:5432/socialnetwork_test
+    env_file:
+      - ./social-repo/web-variables.env
     volumes:
       - ./social-repo:/app
     networks:

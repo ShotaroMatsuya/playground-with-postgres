@@ -2,10 +2,15 @@ const request = require('supertest');
 const buildApp = require('../../app');
 const UserRepo = require('../../repos/user-repo');
 const pool = require('../../pool');
-const Context = require('../context');
 
-beforeAll(async () => {
-  const context = await Context.build();
+beforeAll(() => {
+  return pool.connect({
+    host: process.env.HOST,
+    port: process.env.PORT,
+    database: process.env.TEST_DB,
+    user: process.env.DBUSER,
+    password: process.env.PASSWORD,
+  });
 });
 
 afterAll(() => {
