@@ -1,6 +1,21 @@
 const request = require('supertest');
 const buildApp = require('../../app');
 const UserRepo = require('../../repos/user-repo');
+const pool = require('../../pool');
+
+beforeAll(() => {
+  return pool.connect({
+    host: process.env.HOST,
+    port: process.env.PORT,
+    database: process.env.DB,
+    user: process.env.DBUSER,
+    password: process.env.PASSWORD,
+  });
+});
+
+afterAll(() => {
+  return pool.close();
+});
 
 it('create a user', async () => {
   const startingCount = await UserRepo.count();
