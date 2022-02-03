@@ -131,6 +131,11 @@ pg_restore -a -O --disable-triggers -e -v -d instagram ig.sql
 ```
 
 # 権限周り
+## user情報の確認
+
+```
+select * from pg_user;
+```
 
 例
 
