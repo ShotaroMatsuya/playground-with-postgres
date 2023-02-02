@@ -1,8 +1,4 @@
 version: '3.8'
-
-networks:
-  postgres:
-    external: true
 services:
   postgres:
     build:
@@ -13,8 +9,7 @@ services:
       - ./postgres/sql:/etc/postgresql/sql
     ports:
       - '5432:5432'
-    networks:
-      - postgres
+
   pgadmin:
     image: dpage/pgadmin4:4.2
     ports:
@@ -24,15 +19,13 @@ services:
       PGADMIN_DEFAULT_PASSWORD: password
     volumes:
       - ./pgadmin:/var/lib/pgadmin
-    networks:
-      - postgres
     depends_on:
       - postgres
   node:
-    build: 
+    build:
       context: ./ig
       dockerfile: Dockerfile
-      # 
+      #
     # command: npm run migrate up
     # command: npm run migrate down
     # command: npm run migrate create rename contents to body
@@ -44,11 +37,9 @@ services:
       - /app/node_modules
     env_file:
       - ./ig/web-variables.env
-    networks:
-      - postgres
     depends_on:
       - postgres
-  
+
   social:
     build:
       context: ./social-repo
@@ -61,8 +52,6 @@ services:
       - /app/node_modules
     env_file:
       - ./social-repo/web-variables.env
-    networks:
-      - postgres
     depends_on:
       - postgres
   npm:
@@ -75,8 +64,6 @@ services:
       - ./social-repo/web-variables.env
     volumes:
       - ./social-repo:/app
-    networks:
-      - postgres
 volumes:
   data:
   pgadmin:
