@@ -11,7 +11,7 @@ services:
       - '5432:5432'
 
   pgadmin:
-    image: dpage/pgadmin4:4.2
+    image: dpage/pgadmin4:4.30
     ports:
       - 8888:80
     environment:
