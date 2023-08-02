@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dedent": "^0.7.0",
+    "dedent": "^1.0.0",
     "express": "^4.17.2",
     "jest": "^27.4.5",
     "node-pg-migrate": "^6.2.0",
