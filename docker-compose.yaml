@@ -55,7 +55,7 @@ services:
     depends_on:
       - postgres
   npm:
-    image: node:14
+    image: node:21
     working_dir: /app
     entrypoint: ['npm']
     environment:
