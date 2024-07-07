@@ -11,7 +11,7 @@
     "license": "MIT",
     "dependencies": {
         "express": "^4.17.2",
-        "node-pg-migrate": "^6.2.0",
+        "node-pg-migrate": "^7.0.0",
         "pg": "^8.7.1",
         "nodemon": "^2.0.15"
     }
