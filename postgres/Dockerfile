@@ -1,4 +1,4 @@
-FROM postgres:12.15
+FROM postgres:17.6
 
 RUN apt-get update \
     && apt-get install wget -y \
